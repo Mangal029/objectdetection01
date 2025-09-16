@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Real-Time Object Counter with Database</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Real-Time Object Counter with Database</h1>
+        <p>Real-time object detection and counting with data storage</p>
+    </header>
+
+    <main id="landingPage">
+        <section>
+            <p>This AI-powered system detects and counts multiple objects in real-time via your webcam. It can identify people, cars, bikes, buses, and trucks using TensorFlow.js and the COCO-SSD deep learning model, directly in your browser without installation.</p>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <ul>
+                <li>⚡ Real-time AI detection</li>
+                <li>🧍 Object classification (person, car, bike, etc.)</li>
+                <li>📊 Live count display</li>
+                <li>💾 Database storage of counts with timestamps</li>
+                <li>📈 History viewing and data export</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Usage Instructions</h2>
+            <ul>
+                <li>💡 Good lighting improves accuracy</li>
+                <li>📷 Keep your camera steady</li>
+                <li>🌍 Works on Chrome, Edge, or Firefox (desktop/mobile)</li>
+            </ul>
+        </section>
+
+        <button id="startBtn">🚀 Start Detection</button>
+        <button id="viewHistoryBtn">📊 View History</button>
+    </main>
+
+    <div id="detectionSection" class="d-none">
+        <div class="controls">
+            <select id="modeSelect">
+      <option value="webcam">Webcam</option>
+      <option value="upload">Upload Media</option>
+    </select>
+            <select id="cameraSelect" class="d-none"></select>
+            <input type="file" id="fileInput" accept="image/*,video/*" class="d-none">
+            <div>
+                <label>Confidence: <span id="confLabel">0.5</span></label>
+                <input type="range" id="confSlider" min="0" max="1" step="0.1" value="0.5">
+            </div>
+        </div>
+
+        <div class="controls">
+            <label><input type="checkbox" class="countCheckbox" value="person" checked> Person</label>
+            <label><input type="checkbox" class="countCheckbox" value="car" checked> Car</label>
+            <label><input type="checkbox" class="countCheckbox" value="truck" checked> Truck</label>
+            <label><input type="checkbox" class="countCheckbox" value="bus" checked> Bus</label>
+            <label><input type="checkbox" class="countCheckbox" value="motorcycle"> Motorcycle</label>
+        </div>
+
+        <button id="startDetectBtn">Start</button>
+        <button id="stopBtn" disabled>Stop</button>
+        <button id="exportBtn">Export Data</button>
+
+        <div id="counter">
+            <div class="count-box">🧍 People: <span id="countPerson">0</span></div>
+            <div class="count-box">🚗 Cars: <span id="countCar">0</span></div>
+            <div class="count-box">🚚 Trucks: <span id="countTruck">0</span></div>
+            <div class="count-box">🚌 Buses: <span id="countBus">0</span></div>
+        </div>
+
+        <video id="video" autoplay playsinline class="d-none"></video>
+        <img id="image" class="d-none">
+        <canvas id="overlay"></canvas>
+
+        <div id="historyChartContainer">
+            <canvas id="historyChart"></canvas>
+        </div>
+    </div>
+
+    <div id="historySection" class="d-none">
+        <button id="backBtn">← Back</button>
+        <h2>Detection History</h2>
+
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="table">Table View</button>
+            <button class="tab-button" data-tab="chart">Chart View</button>
+        </div>
+
+        <div class="tab-content active" id="tableTab">
+            <table id="historyTable">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Duration (s)</th>
+                        <th>People</th>
+                        <th>Cars</th>
+                        <th>Trucks</th>
+                        <th>Buses</th>
+                        <th>Total Objects</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-content" id="chartTab">
+            <canvas id="fullHistoryChart" height="400"></canvas>
+        </div>
+
+        <button id="exportHistoryBtn" style="margin-top: 20px;">Export Full History</button>
+        <button id="clearHistoryBtn" style="background: #dc3545;">Clear History</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>

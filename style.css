@@ -1,0 +1,240 @@
+/* (style.css content omitted for brevity in this file) */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background animation layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,255,136,0.15) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveDots 15s linear infinite;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 136, 0.05) 0px,
+    rgba(0, 255, 136, 0.05) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  animation: scanLines 4s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveDots {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
+}
+
+@keyframes scanLines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100px; }
+}
+
+header {
+  background: #222;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #00ff88;
+}
+
+header p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  color: #ccc;
+}
+
+main {
+  padding: 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #00ff88;
+}
+
+p {
+  line-height: 1.5;
+  color: #ccc;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: rgba(255,255,255,0.05);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  margin: 5px;
+}
+
+button:hover {
+  background: #218838;
+}
+
+button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.d-none {
+  display: none !important;
+}
+
+#detectionSection {
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.controls {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.controls select, .controls input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #222;
+  color: white;
+}
+
+video, canvas, img {
+  max-width: 90%;
+  border: 3px solid white;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+#counter {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 18px;
+  flex-wrap: wrap;
+}
+
+.count-box {
+  background: rgba(255,255,255,0.1);
+  padding: 10px 15px;
+  border-radius: 5px;
+  min-width: 80px;
+}
+
+#historyChartContainer {
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+#historySection {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.tab-buttons {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background: #333;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background: #00ff88;
+  color: black;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+#historyTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#historyTable th, #historyTable td {
+  border: 1px solid #444;
+  padding: 10px;
+  text-align: left;
+}
+
+#historyTable th {
+  background: #333;
+}
+
+#historyTable tr:nth-child(even) {
+  background: #1a1a1a;
+}
+
+footer {
+  background: #222;
+  color: #ccc;
+  padding: 15px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  border-top: 1px solid #333;
+}
